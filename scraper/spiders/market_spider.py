@@ -1,0 +1,1 @@
+# Arquivo para spider base, replicar a partir daqui.
