@@ -1,1 +1,0 @@
-# Processamento de dados coletados
