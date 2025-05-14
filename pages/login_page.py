@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.webdriver import WebDriver
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException, TimeoutException
+from utils.helpers import custom_exception_traceback
 
 class LoginPage:
     def __init__(self, driver: WebDriver):
@@ -11,4 +12,7 @@ class LoginPage:
             self.driver.get(login_url)
         except NoSuchElementException as e:
             #TODO: Criar exceção após finalizar de criar uma função em helpers.py que configura o traceback.
-            pass
+            print(f"Element not found during sign in process: \n{custom_exception_traceback(e)}")
+        except TimeoutException as e:
+            print(f"Timeout occurred during sign in process: \n{custom_exception_traceback(e)}")
+            

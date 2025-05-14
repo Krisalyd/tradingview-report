@@ -6,7 +6,7 @@ class ChromeDriver:
         """Configure and create a Chrome WebDriver instance.
 
         Returns:
-            webdriver.Chrome: Instance of Chrome WebDriver.
+            Chrome: Instance of Chrome WebDriver.
         """         
         options_chrome = ChromeOptions()
         options_chrome.page_load_strategy = "eager"

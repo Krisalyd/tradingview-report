@@ -1,13 +1,13 @@
-from config import BASE_URL, LOGIN_EMAIL, LOGIN_PASSWORD
-from drivers.chrome_driver import ChromeDriver
 from selenium.webdriver import Chrome
+from config import LOGIN_EMAIL, LOGIN_PASSWORD
+from drivers.chrome_driver import ChromeDriver
 from pages.login_page import LoginPage
 
+BASE_URL = "https://www.tradingview.com/screener/"
 
 def main():
-    chrome_driver: Chrome = ChromeDriver.create_chrome_driver()
-    
     try:
+        chrome_driver: Chrome = ChromeDriver.create_chrome_driver()
         login_page = LoginPage(driver=chrome_driver)
         login_page.sign_in(login_url=BASE_URL)
     except:
@@ -15,22 +15,5 @@ def main():
     finally:
         chrome_driver.quit()
 
-main()
-
-
-"""
-driver = webdriver.Chrome()
-driver.get("https://selenium.dev/")
-driver.quit()"""
-"""
-driver = webdriver.Chrome()
-
-driver.get("https://selenium.dev/documentation")
-assert "Selenium" in driver.title
-
-elem = driver.find_element(by=By.ID, value="m-documentationwebdriver")
-elem.click()
-assert "WebDriver" in driver.title
-
-driver.quit()
-"""
+if __name__ == "__main__":
+    main()
