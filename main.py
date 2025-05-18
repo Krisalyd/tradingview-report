@@ -1,21 +1,37 @@
 from selenium.webdriver import Chrome
-from config import LOGIN_EMAIL, LOGIN_PASSWORD
 from drivers.chrome_driver import create_chrome_driver
 from pages.login_page import LoginPage
+from pages.stocks_screener_page import StocksScreenerPage
+from config import get_env_str
 
-BASE_URL = "https://www.tradingview.com/screener/"
+BASE_URL: str = "https://www.tradingview.com/screener/"
 
-chrome_driver: Chrome = create_chrome_driver()
+
 
 def main():
-    
+
+    chrome_driver: Chrome | None = None
+
     try: 
-        login_page = LoginPage(driver=chrome_driver)
+        # Check if credentials are set
+        email: str = get_env_str(key="LOGIN_EMAIL")
+        password: str = get_env_str(key="LOGIN_PASSWORD")
+
+        # Initialize the Chrome driver
+        chrome_driver = create_chrome_driver()
+
+        # Initialize the login page
+        login_page = LoginPage(driver=chrome_driver, login_email=email, login_password=password)    
         login_page.sign_in(login_url=BASE_URL)
+
+        # Get a list of stocks sectors
+        stocks_screener_page = StocksScreenerPage(driver=chrome_driver)
+        stocks_screener_page.apply_standard_filters()
     except:
         print("An error occurred during the execution of the script.")
     finally:
-        chrome_driver.quit
+        if chrome_driver:
+            chrome_driver.quit()
 
 if __name__ == "__main__":
     main()

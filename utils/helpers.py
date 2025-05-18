@@ -1,1 +1,0 @@
-# Módulo para funções de espera e rolagem de página

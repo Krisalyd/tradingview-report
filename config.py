@@ -3,5 +3,9 @@ import os
 
 load_dotenv()
 
-LOGIN_EMAIL = os.getenv("LOGIN_EMAIL")
-LOGIN_PASSWORD = os.getenv("LOGIN_PASSWORD")
+def get_env_str(key: str) -> str:
+    value: str | None
+    value = os.getenv(key)
+    if value is None:
+        raise EnvironmentError(f"{key} is not set.")
+    return value
