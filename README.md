@@ -4,5 +4,5 @@ Este repositório contém um projeto de scraping para coletar dados do **[Tradin
 
 ## Apresentação do relatório
 
-Os dados serão exidos em Power BI quando o o projeto estiver completo.
+Os dados serão serão apresentados em um relatório utilizando Streamlit.
 

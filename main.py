@@ -26,7 +26,8 @@ def main():
 
         # Get a list of stocks sectors
         stocks_screener_page = StocksScreenerPage(driver=chrome_driver)
-        stocks_screener_page.apply_standard_filters()
+        stocks_screener_page.check_if_filters_are_visible()
+        # stocks_screener_page.apply_standard_filters()
     except:
         print("An error occurred during the execution of the script.")
     finally:

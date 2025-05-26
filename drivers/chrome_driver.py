@@ -8,8 +8,8 @@ def create_chrome_driver() -> Chrome:
         Chrome: Instance of Chrome WebDriver.
     """         
     options_chrome = ChromeOptions()
+    options_chrome.add_argument("--disable-blink-features=AutomationControlled")
     options_chrome.page_load_strategy = "eager"
-    options_chrome.accept_insecure_certs = True
     options_chrome.browser_version = "stable"
     driver = Chrome(options=options_chrome)
     return driver
