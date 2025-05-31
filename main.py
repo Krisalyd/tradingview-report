@@ -3,6 +3,7 @@ from drivers.chrome_driver import create_chrome_driver
 from pages.login_page import LoginPage
 from pages.stocks_screener_page import StocksScreenerPage
 from config import get_env_str
+from utils.utilities import custom_filters
 
 BASE_URL: str = "https://www.tradingview.com/screener/"
 
@@ -24,10 +25,15 @@ def main():
         login_page = LoginPage(driver=chrome_driver, login_email=email, login_password=password)    
         login_page.sign_in(login_url=BASE_URL)
 
-        # Get a list of stocks sectors
         stocks_screener_page = StocksScreenerPage(driver=chrome_driver)
-        stocks_screener_page.check_if_filters_are_visible()
-        # stocks_screener_page.apply_standard_filters()
+
+        # Filters to be applied
+        filters_to_use: dict = custom_filters()
+
+        # Check current visible filters in screener page
+        current_present_filters = stocks_screener_page.check_visible_filters()
+
+        #stocks_screener_page.apply_filters()
     except:
         print("An error occurred during the execution of the script.")
     finally:
