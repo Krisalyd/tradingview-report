@@ -39,6 +39,7 @@ class LoginPage:
             password_input = self.driver.find_element(By.CSS_SELECTOR, "#id_password")
             password_input.send_keys(self.login_password)
             
+            # TODO: Testar manipulação de IP para evitar bloqueios.
             # Sign in button click
             sign_in_button = self.driver.find_element(By.CSS_SELECTOR, "button[data-overflow-tooltip-text='Sign in']")
             sign_in_button.click()

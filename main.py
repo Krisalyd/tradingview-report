@@ -24,12 +24,11 @@ def main():
         login_page = LoginPage(driver=chrome_driver, login_email=email, login_password=password)    
         login_page.sign_in(login_url=BASE_URL)
 
+        # Initialize the stocks screener page
         stocks_screener_page = StocksScreenerPage(driver=chrome_driver)
 
-        # Check current visible filters in screener page
-        current_present_filters, container = stocks_screener_page.check_visible_filters()
-
-        stocks_screener_page.apply_filters(current_filters=current_present_filters, container_with_filters=container)
+        # Setup stocks filters
+        stocks_screener_page.apply_filters()
     except:
         print("An error occurred during the execution of the script.")
     finally:
