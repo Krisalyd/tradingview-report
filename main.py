@@ -28,6 +28,11 @@ def main():
         stocks_screener_page = StocksScreenerPage(driver=chrome_driver)
 
         # Setup stocks filters
+        visible_filters, container_with_filters = stocks_screener_page.check_visible_filters()
+
+        # TODO: Implement logic to add missing filters
+        stocks_screener_page.add_missing_filters(current_filters_list=visible_filters, container_filter=container_with_filters)
+
         stocks_screener_page.apply_filters()
     except:
         print("An error occurred during the execution of the script.")
