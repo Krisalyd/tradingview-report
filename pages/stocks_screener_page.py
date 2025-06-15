@@ -17,17 +17,20 @@ class StocksScreenerPage():
     
     def add_missing_filters(self, current_filters_list: list[str], container_filter: WebElement) -> None:
         try:
+            sleep(3)
             control_class = container_filter.find_element(By.CSS_SELECTOR, ".controls-RMcYwJOr")
             add_filter_button = control_class.find_element(By.CSS_SELECTOR, "button[data-name=screener-add-new-filter]")
-            filter_field = self.driver.find_element(By.CSS_SELECTOR, "input[placeholder=Type filter name]")
 
-            if "Market cap" not in current_filters_list:
-                sleep(3)
+            # "Exchange" filter.
+            if "Exchange" not in current_filters_list:
                 add_filter_button.click()
-
                 sleep(3)
+                filter_field = self.driver.find_element(By.CSS_SELECTOR, "input[placeholder='Type filter name']")
+
                 filter_field.click()
-                filter_field.send_keys("Market capitalization")
+                sleep(3)
+                filter_field.send_keys("Exchange")
+                
         except Exception as exception_add_missing_filters:
             print(f"An error occurred while adding missing filters: \n{exception_add_missing_filters}")
             raise
