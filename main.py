@@ -9,7 +9,7 @@ BASE_URL: str = "https://www.tradingview.com/screener/"
 
 
 def main():
-
+    required_columns: list[str]
     chrome_driver: Chrome | None = None
 
     try: 
@@ -27,13 +27,13 @@ def main():
         # Initialize the stocks screener page
         stocks_screener_page = StocksScreenerPage(driver=chrome_driver)
 
-        # Setup stocks filters
-        visible_filters, container_with_filters = stocks_screener_page.check_visible_filters()
+        # List of columns to use
+        #required_columns = stocks_screener_page.define_table_columns()
 
-        stocks_screener_page.add_missing_filters(current_filters_list=visible_filters, container_filter=container_with_filters)
+        # Setup table column
+        stocks_screener_page.select_columns()
 
-        #stocks_screener_page.apply_filters()
-    except:
+    except Exception as exception_main:
         print("An error occurred during the execution of the script.")
     finally:
         if chrome_driver:

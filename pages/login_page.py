@@ -15,31 +15,31 @@ class LoginPage:
             self.driver.get(login_url)
 
             # Find and click in the dropdown where the login button is located.
-            sleep(3) 
+            sleep(1.5) 
             find_login_dropdown_button = self.driver.find_element(By.CSS_SELECTOR, ".tv-header__user-menu-button.tv-header__user-menu-button--anonymous.js-header-user-menu-button")           
             find_login_dropdown_button.click()
 
             # Open sign in page.
-            sleep(3)
+            sleep(1.5)
             sign_in_button = self.driver.find_element(By.CSS_SELECTOR,"button[data-name=header-user-menu-sign-in]")            
             sign_in_button.click()
 
             # Click on the "Sign in with email" button.
-            sleep(3)
+            sleep(1.5)
             login_with_email_button = self.driver.find_element(By.CSS_SELECTOR, "button[name='Email']")
             login_with_email_button.click()
             
             # Enter email and password.
-            sleep(3)
+            sleep(1.5)
             email_input = self.driver.find_element(By.CSS_SELECTOR, "#id_username")
             email_input.send_keys(self.login_email)
 
-            sleep(3)
+            sleep(1.5)
             password_input = self.driver.find_element(By.CSS_SELECTOR, "#id_password")
             password_input.send_keys(self.login_password)
             
             # Sign in button click
-            sleep(3)
+            sleep(1.5)
             sign_in_button = self.driver.find_element(By.CSS_SELECTOR, "button[data-overflow-tooltip-text='Sign in']")
             sign_in_button.click()
             
