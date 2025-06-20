@@ -27,9 +27,6 @@ def main():
         # Initialize the stocks screener page
         stocks_screener_page = StocksScreenerPage(driver=chrome_driver)
 
-        # List of columns to use
-        #required_columns = stocks_screener_page.define_table_columns()
-
         # Setup table column
         stocks_screener_page.select_columns()
 

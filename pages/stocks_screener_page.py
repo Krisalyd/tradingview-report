@@ -47,10 +47,16 @@ class StocksScreenerPage():
                 add_column_button.click()
                 sleep(1.5)
                 self.driver.find_element(By.CSS_SELECTOR, "input[placeholder='Type column name']").send_keys("Exchange")
+                columns_options = self.driver.find_elements(By.CSS_SELECTOR, ".button-Lsy3A2H8")
+                for item in columns_options:
+                    if item.text == "Exchange":
+                        item.click()
+                        break
+                
 
         except Exception as exception_select_columns:
-            print("An error occurred while selecting columns in the stocks screener page.")
-            raise exception_select_columns
+            print(f"An error occurred while selecting columns in the stocks screener page: \n{exception_select_columns}")
+            raise
     
 
     
