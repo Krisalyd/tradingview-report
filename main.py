@@ -11,6 +11,7 @@ BASE_URL: str = "https://www.tradingview.com/screener/"
 def main():
     required_columns: list[str]
     chrome_driver: Chrome | None = None
+    columns: list[str] = []
 
     try: 
         # Check if credentials are set
@@ -29,6 +30,16 @@ def main():
 
         # Setup table column
         stocks_screener_page.select_columns()
+
+        # Required columns for the report
+        columns = stocks_screener_page.define_table_columns()
+
+        # Get column position
+        dict_columns = stocks_screener_page.get_column_position(columns_list=columns)
+
+        # TODO: Implement method to collect data based on the columns positions
+        # Collect data
+        #stocks_screener_page.collect_stocks_data(required_columns=columns)
 
     except Exception as exception_main:
         print("An error occurred during the execution of the script.")

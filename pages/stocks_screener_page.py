@@ -32,6 +32,8 @@ class StocksScreenerPage():
         return data_field_columns
 
     def select_columns(self) -> None:
+        """ Select the columns to be displayed in the stocks screener table.
+        """        
         current_columns: list[WebElement] = []
         column_data_field: list[str] = []
         add_column_button: WebElement = self.driver.find_element(By.CSS_SELECTOR, "button[data-name='screener-add-column']")
@@ -158,11 +160,57 @@ class StocksScreenerPage():
                         self.driver.find_element(By.CSS_SELECTOR, "button[data-overflow-tooltip-text='Add column']").click()
                         break
                 
+            # ReturnOnAssets|ttm
+            if "ReturnOnAssets|ttm" not in column_data_field:
+                add_column_button.click()
+                sleep(1.5)
+                self.driver.find_element(By.CSS_SELECTOR, "input[placeholder='Type column name']").send_keys("Return on assets %")
+                columns_options = self.driver.find_elements(By.CSS_SELECTOR, ".button-Lsy3A2H8")
+                for item in columns_options:
+                    if item.text == "Return on assets %":
+                        item.click()
+                        sleep(1)
+                        self.driver.find_element(By.CSS_SELECTOR, "button[data-overflow-tooltip-text='Add column']").click()
+                        break
+
+            # ReturnOnInvestedCapital|ttm
+            if "ReturnOnInvestedCapital|ttm" not in column_data_field:
+                add_column_button.click()
+                sleep(1.5)
+                self.driver.find_element(By.CSS_SELECTOR, "input[placeholder='Type column name']").send_keys("Return on invested capital %")
+                columns_options = self.driver.find_elements(By.CSS_SELECTOR, ".button-Lsy3A2H8")
+                for item in columns_options:
+                    if item.text == "Return on invested capital %":
+                        item.click()
+                        sleep(1)
+                        self.driver.find_element(By.CSS_SELECTOR, "button[data-overflow-tooltip-text='Add column']").click()
+                        break
 
         except Exception as exception_select_columns:
             print(f"An error occurred while selecting columns in the stocks screener page: \n{exception_select_columns}")
             raise
+
+    def get_column_position(self, columns_list: list[str]) -> dict[str, int]:
+        """ Get the position of each column in the stocks screener table.
+
+        Args:
+            columns_list (list[str]): A list of column names to find their positions in the table.
+
+        Returns:
+              dict[str, int]: A dictionary where keys are column names and values are their respective positions] in the table.
+        """        
+        dict_columns_position: dict[str, int] = {}
+        column_index: int = 0
+        current_columns = self.driver.find_elements(By.TAG_NAME, "th")
+        for column in current_columns:
+            if column.get_dom_attribute("data-field") in columns_list:
+                dict_columns_position[column.get_dom_attribute("data-field")] = column_index
+            column_index += 1
+        return dict_columns_position
     
+    def collect_stocks_data(self, required_columns: list[str]):
+        pass
+
 
     
 
