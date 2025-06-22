@@ -42,6 +42,28 @@ class StocksScreenerPage():
                 column_data_field.append(column.get_dom_attribute("data-field"))
 
             # Add the columns that are not currently selected
+            # Price
+            if "Price" not in column_data_field:
+                add_column_button.click()
+                sleep(1.5)
+                self.driver.find_element(By.CSS_SELECTOR, "input[placeholder='Type column name']").send_keys("Price")
+                columns_options = self.driver.find_elements(By.CSS_SELECTOR, ".button-Lsy3A2H8")
+                for item in columns_options:
+                    if item.text == "Exchange":
+                        item.click()
+                        break
+
+            # MarketCap
+            if "MarketCap" not in column_data_field:
+                add_column_button.click()
+                sleep(1.5)
+                self.driver.find_element(By.CSS_SELECTOR, "input[placeholder='Type column name']").send_keys("Market capitalization")
+                columns_options = self.driver.find_elements(By.CSS_SELECTOR, ".button-Lsy3A2H8")
+                for item in columns_options:
+                    if item.text == "Market capitalization":
+                        item.click()
+                        break
+
             # Exchange
             if "Exchange" not in column_data_field:
                 add_column_button.click()
@@ -51,6 +73,89 @@ class StocksScreenerPage():
                 for item in columns_options:
                     if item.text == "Exchange":
                         item.click()
+                        break
+            
+            # PriceToEarnings
+            if "PriceToEarnings" not in column_data_field:
+                add_column_button.click()
+                sleep(1.5)
+                self.driver.find_element(By.CSS_SELECTOR, "input[placeholder='Type column name']").send_keys("Price to earnings ratio")
+                columns_options = self.driver.find_elements(By.CSS_SELECTOR, ".button-Lsy3A2H8")
+                for item in columns_options:
+                    if item.text == "Price to earnings ratio":
+                        item.click()
+                        break
+
+            # DividendsYield|ttm
+            if "DividendsYield|ttm" not in column_data_field:
+                add_column_button.click()
+                sleep(1.5)
+                self.driver.find_element(By.CSS_SELECTOR, "input[placeholder='Type column name']").send_keys("Dividend yield %")
+                columns_options = self.driver.find_elements(By.CSS_SELECTOR, ".button-Lsy3A2H8")
+                for item in columns_options:
+                    if item.text == "Dividend yield %":
+                        item.click()
+                        sleep(1.5)
+                        self.driver.find_element(By.CSS_SELECTOR, "button[data-overflow-tooltip-text='Add column']").click()
+                        break
+
+            # Sector
+            if "Sector" not in column_data_field:
+                add_column_button.click()
+                sleep(1.5)
+                self.driver.find_element(By.CSS_SELECTOR, "input[placeholder='Type column name']").send_keys("Sector")
+                columns_options = self.driver.find_elements(By.CSS_SELECTOR, ".button-Lsy3A2H8")
+                for item in columns_options:
+                    if item.text == "Sector":
+                        item.click()
+                        break
+
+            # NetDebtToEbitda|ttm
+            if "NetDebtToEbitda|ttm" not in column_data_field:
+                add_column_button.click()
+                sleep(1.5)
+                self.driver.find_element(By.CSS_SELECTOR, "input[placeholder='Type column name']").send_keys("Net debt to EBITDA")
+                columns_options = self.driver.find_elements(By.CSS_SELECTOR, ".button-Lsy3A2H8")
+                for item in columns_options:
+                    if item.text == "Net debt to EBITDA":
+                        item.click()
+                        sleep(1)
+                        self.driver.find_element(By.CSS_SELECTOR, "button[data-overflow-tooltip-text='Add column']").click()
+                        break
+
+            # Industry
+            if "Industry" not in column_data_field:
+                add_column_button.click()
+                sleep(1.5)
+                self.driver.find_element(By.CSS_SELECTOR, "input[placeholder='Type column name']").send_keys("Industry")
+                columns_options = self.driver.find_elements(By.CSS_SELECTOR, ".button-Lsy3A2H8")
+                for item in columns_options:
+                    if item.text == "Industry":
+                        item.click()
+                        break
+            
+            # PriceToBook
+            if "PriceToBook" not in column_data_field:
+                add_column_button.click()
+                sleep(1.5)
+                self.driver.find_element(By.CSS_SELECTOR, "input[placeholder='Type column name']").send_keys("Price to book ratio")
+                columns_options = self.driver.find_elements(By.CSS_SELECTOR, ".button-Lsy3A2H8")
+                for item in columns_options:
+                    if item.text == "Price to book ratio":
+                        item.click()
+                        break
+            
+            # ReturnOnEquity|ttm
+            if "ReturnOnEquity|ttm" not in column_data_field:
+                add_column_button.click()
+                sleep(1.5)
+                self.driver.find_element(By.CSS_SELECTOR, "input[placeholder='Type column name']").send_keys("Return on equity %")
+                columns_options = self.driver.find_elements(By.CSS_SELECTOR, ".button-Lsy3A2H8")
+                for item in columns_options:
+                    if item.text == "Return on equity %":
+                        item.click()
+                        sleep(1)
+                        self.driver.find_element(By.CSS_SELECTOR, "button[data-overflow-tooltip-text='Add column']").click()
                         break
                 
 
